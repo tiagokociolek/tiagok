@@ -1,4 +1,5 @@
-
+// Tiago Kociolek
+// 4°Sian
 public class Dragon {
 
 	private String nome;
