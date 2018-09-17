@@ -29,14 +29,11 @@ public class ViewCatalogo {
 	
 	public Dragon inserir() 
 	{
-		boolean teste = true;
-		String name;
 		
 		Dragon umDragon = new Dragon();
 		System.out.println("Inserir");
 		System.out.println("Nome: ");
-		name = (teclado.nextLine());
-		
+		umDragon.setNome(teclado.nextLine());		
 		
 		System.out.println("Tipo: ");
 		umDragon.setTipo(teclado.nextLine());

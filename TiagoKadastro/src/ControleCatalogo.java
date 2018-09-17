@@ -1,4 +1,3 @@
-
 //Tiago Kociolek
 //4ºSian
 
@@ -50,5 +49,3 @@ public class ControleCatalogo {
 	}
 		
 }
-
-
