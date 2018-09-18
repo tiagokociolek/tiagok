@@ -89,7 +89,7 @@ public class ViewCatalogo {
 
 	  }
 	  
-    public void AlterarModificar(ArrayList<Dragon> catalogo, int x) {
+    private void AlterarModificar(ArrayList<Dragon> catalogo, int x) {
 		
 	   boolean continuar = true;
 		int opc = 0;
@@ -288,6 +288,16 @@ public class ViewCatalogo {
 
 	public void Sair() {
 		System.out.println("Saindo da aplicação!");
+		
+	}
+
+	public boolean nulo() {
+		System.out.println("Catalogo vazio favor adicionar pelo menos 1 dados!");
+		System.out.println("Deseja adicionar agora? S para sim qualquer tecla sair.");
+		boolean q = false;
+		 q = ("s".equalsIgnoreCase(teclado.nextLine()));	
+		 if (q == false)return false;
+		return q;
 		
 	}
 
