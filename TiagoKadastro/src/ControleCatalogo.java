@@ -7,12 +7,12 @@ public class ControleCatalogo {
 	private ViewCatalogo viewCatalogo;
 	ArrayList<Dragon> catalogo;
 	
-	public ControleCatalogo() {
+	public ControleCatalogo() throws InterruptedException {
 		viewCatalogo = new ViewCatalogo();
 		catalogo = new ArrayList<>();
 		trataMenu();		
 	}
-	private void trataMenu() {
+	private void trataMenu() throws InterruptedException {
 		
 		Boolean continuar = true;
 		do {
@@ -37,6 +37,8 @@ public class ControleCatalogo {
 				break;
 			case "6":
 				System.out.println("sair do menu");
+				viewCatalogo.Sair();
+				Thread.sleep(5000);
 				continuar = false;
 				break;
 		default:

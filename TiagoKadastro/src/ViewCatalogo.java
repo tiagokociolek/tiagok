@@ -286,5 +286,10 @@ public class ViewCatalogo {
 		
 	}
 
+	public void Sair() {
+		System.out.println("Saindo da aplicação!");
+		
+	}
+
 	
 }
