@@ -301,5 +301,9 @@ public class ViewCatalogo {
 		
 	}
 
+	public void opinvalida() {
+		System.out.println("Opção Invalida");		
+	}
+
 	
 }

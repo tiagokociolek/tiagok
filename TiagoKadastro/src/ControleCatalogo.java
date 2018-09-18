@@ -57,13 +57,12 @@ public class ControleCatalogo {
 				}
 				break;
 			case "6":
-				System.out.println("sair do menu");
 				viewCatalogo.Sair();
-				Thread.sleep(5000);
+				Thread.sleep(3000);
 				continuar = false;
 				break;
 		default:
-			System.out.println("Opção Invalida");
+			viewCatalogo.opinvalida();
 			break;
 		}
 		
