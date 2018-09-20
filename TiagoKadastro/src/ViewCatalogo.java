@@ -13,9 +13,14 @@ public class ViewCatalogo {
 		teclado = new Scanner(System.in);
 	}
 	
-	public String mostraMenu() {
+	public String mostraMenu(int itens, boolean it) {
 		
 		System.out.println("-----MENU------");
+		if (it == false) {
+			System.out.println("Exite " + (itens) + " Dragon Catalogados.");
+		}
+		else {System.out.println("Nenhum Dragon Catalogado!");}
+		System.out.println("O que deseja fazer?");
 		System.out.println("1 - Inserir");
 		System.out.println("2 - Listar");
 		System.out.println("3 - Alterar");
@@ -29,6 +34,8 @@ public class ViewCatalogo {
 	
 	public Dragon inserir() 
 	{
+		float n = 0;
+		boolean t = false;
 		
 		Dragon umDragon = new Dragon();
 		System.out.println("Inserir");
@@ -40,6 +47,17 @@ public class ViewCatalogo {
 		
 		System.out.println("Especie: ");
 		umDragon.setEspecie(teclado.nextLine());
+		
+		System.out.println("Força: ");
+		do {
+		try {
+		n = Float.parseFloat(teclado.nextLine());
+		t = true;
+		}catch (Exception e) {
+			System.out.println("\n1Digite um dado válido use o segunite formato exemplo: 1.13 ou EX: 5 \n Digite novamente: ");
+		}
+		}while(t != true);
+		umDragon.setForca(n);
 		
 		return umDragon;
 	}
@@ -90,10 +108,11 @@ public class ViewCatalogo {
 	  }
 	  
     private void AlterarModificar(ArrayList<Dragon> catalogo, int x) {
-		
+		float n = 0;
+		boolean t = false;
 	   boolean continuar = true;
 		int opc = 0;
-		  String SN;
+		//  String SN;
 		  	        
 	   do {  
 		   try {
@@ -101,7 +120,8 @@ public class ViewCatalogo {
 			      System.out.println("\n Para alterar Nome - Digite 1"
         		+ " \n Para alterar tipo - Digite 2"
 			        		+ " \n Para alterar especie - Digite 3 "
-        		+ "\n Para sair de alterar - Digite 4 ");
+			        		+ " \n Para alterar força - Digite 4 "
+        		+ "\n Para sair de alterar - Digite 5 ");
 			        System.out.println("\nEscolha qual campo voce deseja alterar: ");  	
 			        
 	  	  opc = Integer.parseInt(teclado.nextLine());
@@ -125,9 +145,23 @@ public class ViewCatalogo {
 	  	      System.out.println("\nAlterar outro campo S ou N ?");	  	      
 	  	      continuar = ("s".equalsIgnoreCase(teclado.nextLine()));
 	  	      break;	
-	  	 case 4:
+	  	 case 5:
 	  		continuar = false;
 	  		 break;
+	  	 case 4:
+	  		  System.out.println("Força (" +  catalogo.get(x).getForca() + "): ");
+	  		do {
+	  			try {
+	  			n = Float.parseFloat(teclado.nextLine());
+	  			t = true;
+	  			}catch (Exception e) {
+	  				System.out.println("\n1Digite um dado válido use o segunite formato exemplo: 1.13 ou EX: 5 \n Digite novamente: ");
+	  			}
+	  			}while(t != true);
+	  	      catalogo.get(x).setForca(n);
+	  	      System.out.println("\nAlterar outro campo S ou N ?");	  	      
+	  	      continuar = ("s".equalsIgnoreCase(teclado.nextLine()));
+	  	      break;		  		 
 	  	  default:
 	  		System.out.println("Valor digitado Invalido!!");
 	  			break;
@@ -152,9 +186,8 @@ public class ViewCatalogo {
 		System.out.println("1 - Pesquisar por nome\n2"
 				+ " - Pesquisar por Tipo\n3 -"
 				+ " Pesquisar por Especie\n4"
-				+ " - Pesquisar por qualquer critério\n"
+				+ " - Pesquisar por qualquer critério, força não inclusa\n"
 				+ "5 - Sair da pesquisa");
-		System.out.println("Qual o critério de pesquisa?");
 		
         opc = Integer.parseInt(teclado.nextLine());
         x = 0;
@@ -241,15 +274,15 @@ public class ViewCatalogo {
 
 	public void Remover(ArrayList<Dragon> catalogo) {
 	
-		int x,i;
+		int x,i,id;
 		String s;
 		Listar(catalogo);
 		 boolean continuar = true;
 		System.out.println("utilize a ID.");
 		System.out.println("Qual catalogo deseja remover? ou C para cancelar.");
 		s = (teclado.nextLine());
+		id = Integer.parseInt(s);
 		
-	 
 		do {
 			 try {
 	    if("c".equalsIgnoreCase(s) == true) {break;} 
@@ -260,6 +293,13 @@ public class ViewCatalogo {
 	    	 System.out.println("Qual catalogo deseja remover? ou C para cancelar.");
 	    	 s = (teclado.nextLine());
 	    }else {
+	    	 System.out.println("Tem certeza que deseja remover o item?\n ");
+        	System.out.println("ID: " + id + " - " + 
+                    catalogo.get(id).getNome() + "\n DADOS: " +  
+                    catalogo.get(id).toString());        	
+	    	 System.out.println("Tem certeza que deseja remover o item?\n ");
+	    	 System.out.println("S ou N: ");
+	    	 if ("s".equalsIgnoreCase(teclado.nextLine())== true) {	    		    
 	    	catalogo.remove(Integer.parseInt(s));
 	    	System.out.println("Remover mais um item? S ou N:");
 	    	 continuar = ("s".equalsIgnoreCase(teclado.nextLine()));
@@ -267,6 +307,16 @@ public class ViewCatalogo {
 	    	 Listar(catalogo);
 	    	 System.out.println("Qual catalogo deseja remover? ou C para cancelar.");
 	    	 s = (teclado.nextLine());
+	    	 }else {
+	    		 System.out.println("Tetar outro item ? S ou N:");
+			    	continuar = ("s".equalsIgnoreCase(teclado.nextLine()));
+			    	if (continuar == false)break;
+			    	else {
+			    	 Listar(catalogo);
+			    	 System.out.println("Qual catalogo deseja remover? ou C para cancelar.");
+			    	 s = (teclado.nextLine());
+			    	}	    		 
+	    	 }
 	    }
 		   } catch (Exception e) {
 				
@@ -282,8 +332,7 @@ public class ViewCatalogo {
 		   }
 		}while(continuar);
 		
-	
-		
+			
 	}
 
 	public void Sair() {

@@ -18,7 +18,7 @@ public class ControleCatalogo {
 		Boolean add = false;
 		do {
 			
-			String opc = viewCatalogo.mostraMenu();
+			String opc = viewCatalogo.mostraMenu(catalogo.size(), catalogo.isEmpty());
 			
 		switch (opc){
 		    case "1":			  

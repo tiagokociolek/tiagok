@@ -5,13 +5,15 @@ public class Dragon {
 	private String nome;
 	private String tipo;
 	private String especie;
+	private float forca;
 	
 	public Dragon()	{}
 			
-	public Dragon(String nome, String tipo, String especie) {
+	public Dragon(String nome, String tipo, String especie, float forca) {
 		this.nome = nome;
 		this.tipo = tipo;
 		this.especie = especie;
+		this.forca = forca;
 	}
 	
 	public String getNome() {
@@ -31,6 +33,12 @@ public class Dragon {
 	}
 	public void setEspecie(String especie) {
 		this.especie = especie;
+	}
+	public void setForca(float forca) {
+		this.forca = forca;
+	}
+	public float getForca() {
+		return forca;
 	}
 	
 	@Override
@@ -58,7 +66,7 @@ public class Dragon {
 	}
 	@Override
 	public String toString() {
-		return "Dragon [Nome: " + nome + ", Tipo: " + tipo + ", Especie: " + especie + "]";
+		return "Dragon [Nome: " + nome + ", Tipo: " + tipo + ", Especie: " + especie + ", Força: "+ forca + "]";
 	}
 			
 }
